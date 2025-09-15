@@ -12,7 +12,7 @@
     }
   ],
   "routes": [
-    { "handle": "filesystem" },                     // Serve API functions and static assets first
-    { "src": "/(.*)", "dest": "/client/index.html" }  // SPA fallback
+    { "handle": "filesystem" },                     
+    { "src": "/(.*)", "dest": "/client/index.html" } 
   ]
 }
