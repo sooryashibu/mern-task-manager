@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import authRoutes from "./api/routes/authRoutes.js";
-import taskRoutes from "./api/routes/taskRoutes.js";
+import authRoutes from "./expressRoutes/authRoutes.js";
+import taskRoutes from "./expressRoutes/taskRoutes.js";
 
 dotenv.config(); // loads .env
 
