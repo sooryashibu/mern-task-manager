@@ -4,12 +4,15 @@ import tailwind from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwind()],
-  server: { 
-    port: 5173, 
+  server: {
+    port: 5173,
     open: true,
     proxy: {
-      '/api': 'http://localhost:5000'  // ✅ forward API calls during local dev
+      '/api': 'http://localhost:5000'
     }
   },
-  build: { outDir: 'dist', emptyOutDir: true }
+  build: {
+    outDir: '../dist',   // ⬅️ put build output in root/dist
+    emptyOutDir: true
+  }
 })
