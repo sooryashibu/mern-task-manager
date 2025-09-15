@@ -1,14 +1,14 @@
 // api/users/login.js
 import dbConnect from '../../lib/db.js';
 import User from '../../models/User.js';
+import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
-  // Ensure CORS headers on all responses
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -30,14 +30,21 @@ export default async function handler(req, res) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Use the model’s matchPassword method
     const ok = await user.matchPassword(password);
     if (!ok) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
+    // ✅ Generate JWT
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET || 'secret123', // keep secret in env on Vercel
+      { expiresIn: '7d' }
+    );
+
     return res.status(200).json({
       message: 'Login successful',
+      token,
       user: {
         _id: user._id,
         name: user.name,
