@@ -12,7 +12,7 @@ export default defineConfig({
       '/api': 'http://localhost:5000',
     },
   },
-  // emit into client/dist so Vercel can find it
+  // Emit build output into client/dist so Vercel can find it
   build: {
     outDir: 'dist',
     emptyOutDir: true,
