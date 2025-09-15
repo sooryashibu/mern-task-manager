@@ -22,7 +22,7 @@ app.use(
 );
 
 // Routes
-app.use("/api/auth", authRoutes);
+app.use("/api/users", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
 // MongoDB connection
