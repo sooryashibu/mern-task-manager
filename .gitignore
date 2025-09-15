@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+client/node_modules/
+
+# Build outputs
+dist/
+client/dist/
+
+# Env files (keep secrets out of Git)
+.env
+.env.local
+
+# Vercel
+.vercel/
