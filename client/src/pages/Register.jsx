@@ -12,7 +12,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await api.post("/auth/register", { name, email, password });
+      const { data } = await api.post("/users/register", { name, email, password });
       localStorage.setItem("token", data.token); // ✅ save token
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/dashboard");
