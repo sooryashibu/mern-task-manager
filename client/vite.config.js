@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwind from '@tailwindcss/vite'
+// client/vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwind from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [react(), tailwind()],
@@ -8,11 +9,12 @@ export default defineConfig({
     port: 5173,
     open: true,
     proxy: {
-      '/api': 'http://localhost:5000'
-    }
+      '/api': 'http://localhost:5000',
+    },
   },
+  base: '',                // important: use relative paths in production
   build: {
-    outDir: 'dist',      // ⬅️ build to client/dist
-    emptyOutDir: true
-  }
-})
+    outDir: '../dist',     // emit into <repo root>/dist
+    emptyOutDir: true,
+  },
+});
