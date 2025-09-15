@@ -11,8 +11,6 @@ export default defineConfig({
       '/api': 'http://localhost:5000',
     },
   },
-  // Use /client as the base path in production so that built assets
-  // reference /client/assets/... and the entry point is /client/index.html.
   base: process.env.NODE_ENV === 'production' ? '/client/' : '/',
   build: {
     outDir: 'dist',
