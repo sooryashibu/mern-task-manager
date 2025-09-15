@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api", // ✅ works in production too
+  baseURL: "/api", // ✅ works in local and production too
 });
 
 

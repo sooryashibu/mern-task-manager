@@ -11,8 +11,8 @@ export default defineConfig({
       '/api': 'http://localhost:5000'
     }
   },
-  build: {
-    outDir: '../dist',   // ⬅️ put build output in root/dist
-    emptyOutDir: true
-  }
+ build: {
+  outDir: '../dist',   // root/dist
+  emptyOutDir: true
+}
 })
