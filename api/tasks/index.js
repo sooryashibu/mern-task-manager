@@ -3,7 +3,7 @@ import Task from '../../models/Task.js';
 import { requireAuth } from '../../utils/auth.js';
 
 export default async function handler(req, res) {
-  // Handle CORS preflight requests
+  // Respond to CORS preflight requests
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     const tasks = await Task.find({ user: user._id }).sort({ createdAt: -1 });
     return res.json(tasks);
   }
+
   if (req.method === 'POST') {
     const title = (req.body?.title || '').trim();
     if (!title) {
@@ -28,5 +29,6 @@ export default async function handler(req, res) {
     const task = await Task.create({ user: user._id, title });
     return res.status(201).json(task);
   }
+
   return res.status(405).json({ message: 'Method not allowed' });
 }
