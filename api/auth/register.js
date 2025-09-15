@@ -2,7 +2,7 @@ import dbConnect from '../../lib/db.js';
 import User from '../../models/User.js';
 
 export default async function handler(req, res) {
-  // Handle CORS preflight requests
+  // Respond to CORS preflight requests
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // Only allow POST for actual requests
+  // Only allow POST requests for registration
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
