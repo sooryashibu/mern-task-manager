@@ -12,9 +12,9 @@ export default defineConfig({
       '/api': 'http://localhost:5000',
     },
   },
-  base: '',                // important: use relative paths in production
+  // emit into client/dist so Vercel can find it
   build: {
-    outDir: '../dist',     // emit into <repo root>/dist
+    outDir: 'dist',
     emptyOutDir: true,
   },
 });
