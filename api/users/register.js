@@ -3,7 +3,10 @@ import dbConnect from '../../lib/db.js';
 import User from '../../models/User.js';
 
 export default async function handler(req, res) {
-
+  // Handle only POST requests
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
 
   try {
     await dbConnect();
