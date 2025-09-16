@@ -1,8 +1,15 @@
 // api/users/register.js
 import dbConnect from '../../lib/db.js';
 import User from '../../models/User.js';
+import jwt from "jsonwebtoken";
 
 export default async function handler(req, res) {
+  const generateToken = (id) => {
+      return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: "30d",
+      });
+    };
+  
   // Handle only POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
@@ -22,9 +29,10 @@ export default async function handler(req, res) {
     }
 
     const user = await User.create({ name, email, password });
-
+    const token = generateToken(user._id);
     return res.status(201).json({
-      message: 'User registered successfully',
+      message: "User registered successfully",
+      token,
       user: {
         _id: user._id,
         name: user.name,
